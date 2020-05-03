@@ -1,0 +1,1048 @@
+data <- read.table("./procrustes_adjusted.txt", header=TRUE)
+head(data)
+data = data[-1,]
+head(data)
+data <- read.table("./procrustes_adjusted.txt", header=TRUE)#
+#
+head(data)
+colnames(data) <- NULL
+head(data)
+rownames(data) <- NULL
+head(data)
+write.table(data, "./procrustes_adjusted.txt")
+write.table(data, "./procrustes_adjusted.txt", col.names=FALSE, row.names=FALSE)
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)
+names(data)
+head(data)
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10)
+library(MASS)
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10)
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data=data)
+fit
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data=data, CV=TRUE)
+fit
+fit$class
+library(biotools)
+install.packages(‘/private/var/folders/_x/9rzw8tw527l5dl39m6gjjskm0000gn/T/Rtmp1ZQ6vR/downloaded_packages’, repos = NULL, type="source")
+library(caret)
+confused <- confusionMatrix(fit$class, data$Variety)
+confused
+confused$table
+library(reshape2)
+mdata <- melt(conused$table, id="Reference")
+mdata <- melt(confused$table, id="Reference")
+head(mdata)
+library(ggplot2)
+confused$positive
+confused$overall
+confused$byClass
+confused$overall
+head(mdata)
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile()
+p + geom_tile() + coord_fixed()
+Sys.setlocale("LC_MESSAGES", 'es_MX.UTF-8')
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + coord_fixed()
+p + geom_tile() + coord_fixed() + scale_fill_inferno()
+p + geom_tile() + coord_fixed() + scale_fill_viridis()
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c()
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c(option="A")
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c(option="B")
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c(option="C")
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c(option="B")
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + coord_fixed() + scale_fill_viridis_c(option="B")
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 0))
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = -1))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = -0.5))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+# load in libraries#
+#
+library(MASS)#
+library(caret)#
+library(ggplot2)#
+library(reshape2)#
+#
+# read in data, PC scores for wine and table grape leaf shaapes#
+#
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)#
+#
+names(data)#
+#
+head(data)#
+#
+# perform an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall#
+#
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion maatrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+# load in libraries#
+#
+library(MASS)#
+library(caret)#
+library(ggplot2)#
+library(reshape2)#
+#
+# read in data, PC scores for wine and table grape leaf shaapes#
+#
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)#
+#
+names(data)#
+#
+head(data)#
+#
+# perform an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall#
+#
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall#
+#
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 +#
+PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67 + PC68, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 +#
+PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67 + PC68, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 +#
+PC55 , data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 , data=data, CV=TRUE)
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 , data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 , data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + #
+PC55 + PC56, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53, data=data, CV=TRUE)#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+library(reshape2)#
+#
+# read in data, PC scores for wine and table grape leaf shaapes#
+#
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)#
+#
+names(data)#
+#
+head(data)#
+#
+# perform an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall#
+#
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+# load in libraries#
+#
+library(MASS)#
+library(caret)#
+library(ggplot2)#
+library(reshape2)#
+#
+# read in data, PC scores for wine and table grape leaf shaapes#
+#
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)#
+#
+names(data)#
+#
+head(data)#
+#
+# perform an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + #
+PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 +#
+PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + #
+PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall
+# load in libraries#
+#
+library(MASS)#
+library(caret)#
+library(ggplot2)#
+library(reshape2)#
+#
+# read in data, PC scores for wine and table grape leaf shaapes#
+#
+data <- read.table("procrustes_pca_scores.txt", header=TRUE)#
+#
+names(data)#
+#
+head(data)#
+#
+# perform an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 , data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+orm an LDA using PC scores, leave-one-out CV=TRUE#
+#
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67 + PC68, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67 + PC68 + PC69, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit <- lda(Variety ~ PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + PC11 + PC12 + PC13 + PC14 + PC15 + PC16 + PC17 + PC18 + PC19 + PC20 + PC21 + PC22 + PC23 + PC24 + PC25 + PC26 + PC27 + PC28 + PC29 + PC30 + PC31 + PC32 + PC33 + PC34 + PC35 + PC36 + PC37 + PC38 + PC39 + PC40 + PC41 + PC42 + PC43 + PC44 + PC45 + PC46 + PC47 + PC48 + PC49 + PC50 + PC51 + PC52 + PC53 + PC54 + PC55 + PC56 + PC57 + PC58 + PC59 + PC60 + PC61 + PC62 + PC63 + PC64 + PC65 + PC66 + PC67 + PC68 + PC69 + PC70, data=data, CV=TRUE)#
+#
+# for each leaf, predicted variety#
+#
+fit$class#
+confused <- confusionMatrix(fit$class, data$Variety)#
+confused$overall
+fit$class#
+#
+# use confusionMatrix, inputs are predicted variety and actual variety#
+#
+confused <- confusionMatrix(fit$class, data$Variety)#
+#
+# look at results and outputs#
+#
+confused#
+#
+confused$overall#
+#
+confused$byClass#
+#
+confused$table#
+#
+# melt the confusion matrix table so that results can be visualized in ggplot2#
+#
+mdata <- melt(confused$table, id="Reference")#
+#
+head(mdata)#
+#
+# plot out confusion matrix in ggplot2#
+#
+p <- ggplot(mdata, aes(x=Prediction, y=Reference, fill=value))#
+p + geom_tile() + #
+coord_fixed() + #
+scale_fill_viridis_c(option="B") +#
+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))

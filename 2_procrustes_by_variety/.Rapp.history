@@ -1,0 +1,711 @@
+interpolated_points <- read.table("Desktop/1_interpolation/output_interpolated_points.txt", header=TRUE)
+interpolated_points <- read.table("/Desktop/1_interpolation/output_interpolated_points.txt", header=TRUE)
+interpolated_points <- read.table("../1_interpolation/output_interpolated_points.txt", header=TRUE)
+head(interpolated_points)
+names(interpolated_points)
+dim(interpolated_points)
+varieties <- unique(names(interpolated_points[11999]))
+varieties
+names(interpolated_points[11999]
+names(interpolated_points[11999])
+interpolated_points[11999]
+varieties <- unique(interpolated_points[11999])
+varieties
+length(varieties)
+length(varieties$Variety)
+i=1
+print(i)
+variety <- varieties[i]
+variety
+variety <- varieties[i,1]
+variety
+variety <- varieties[i,]
+variety
+i=1#
+	print(i)#
+	variety <- droplevels(varieties[i,])
+variety
+variety_pts <- subset(interpolated_points, Variety==variety)
+variety <- as.character(varieties[i,])
+variety
+variety_pts <- subset(interpolated_points, Variety==variety)
+variety_pts
+i=60#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)
+variety_pts
+dim(variety_pts)
+i=60#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)#
+	coordinates <- as.matrix(variety_pts[1:4, 1:11998])
+k <- 5999#
+m <- 2#
+n <- 4
+data <- read.in("./coordinates.txt",k,m)
+library(shapes)
+data <- read.in("./coordinates.txt",k,m)
+k <- 5999#
+	m <- 2#
+	n <- 4#
+	var.dat <- array(0,c(k,m,n))#
+	var.dat[,,1:4] <- coordinates
+head(var.dat)
+GPA <- procGPA(var.dat, reflect=TRUE, distances=FALSE)
+shapepca(GPA, pcno=1)
+GPA <- procGPA(coordinates, reflect=TRUE, distances=FALSE)
+#Read in the 'shapes' library#
+library(shapes)#
+interpolated_points <- read.table("../1_interpolation/output_interpolated_points.txt", header=TRUE)#
+#
+varieties <- unique(interpolated_points[11999])#
+length(varieties$Variety)
+i=60#
+	print(i)#
+	variety <- as.character(varieties[i,])
+variety_pts <- subset(interpolated_points, Variety==variety)
+coordinates <- as.matrix(variety_pts[1:4, 1:11998])
+write.table("coordinates.txt", coordinates)
+write.table("./coordinates.txt", coordinates)
+head(coordinates)
+getwd()
+write.table(coordinates, "./coordinates.txt")
+k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)
+write.table(coordinates, "./coordinates.txt", row.names=F, col.names=F)
+k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)
+GPA <- procGPA(coordinates, reflect=TRUE, distances=FALSE)
+GPA <- procGPA(data, reflect=TRUE, distances=FALSE)
+shapepca(GPA, pcno=1)
+i=42#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)#
+	coordinates <- as.matrix(variety_pts[1:4, 1:11998])#
+	write.table(coordinates, "./coordinates.txt", row.names=F, col.names=F)#
+	k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)#
+	GPA <- procGPA(data, reflect=TRUE, distances=FALSE)   #
+	shapepca(GPA, pcno=1)
+pa <- as.matrix(GPA$rotated)
+pa <- as.matrix(GPA$rotated)#
+	write.table(pa, file=paste("./output_procrustes_coordinates/",variety,"_adjusted.txt", sep="")
+write.table(pa, file=paste("./output_procrustes_coordinates/",variety,"_adjusted.txt", sep=""))
+mean_shape <- as.matrix(GPA$mshape)#
+	write.table(mean_shape, file=paste("./output_mean_shapes/",variety,"_mean.txt", sep=""))
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+interpolated_points <- read.table("../1_interpolation/output_interpolated_points.txt", header=TRUE)#
+#
+# get names of varieties#
+#
+varieties <- unique(interpolated_points[11999])#
+#
+# for each leaf, perform a separate Procrustes analysis and save results#
+#
+for(i in 1:240){#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)#
+	coordinates <- as.matrix(variety_pts[1:4, 1:11998])#
+	write.table(coordinates, "./coordinates.txt", row.names=F, col.names=F)#
+	k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)#
+	GPA <- procGPA(data, reflect=TRUE, distances=FALSE)   #
+	pa <- as.matrix(GPA$rotated)#
+	write.table(pa, file=paste("./output_procrustes_coordinates/",variety,"_adjusted.txt", sep=""))#
+	mean_shape <- as.matrix(GPA$mshape)#
+	write.table(mean_shape, file=paste("./output_mean_shapes/",variety,"_mean.txt", sep=""))#
+}
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+interpolated_points <- read.table("../1_interpolation/output_interpolated_points.txt", header=TRUE)#
+#
+# get names of varieties#
+#
+varieties <- unique(interpolated_points[11999])#
+#
+# for each leaf, perform a separate Procrustes analysis and save results#
+#
+for(i in 1:240){#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)#
+	coordinates <- as.matrix(variety_pts[1:4, 1:11998])#
+	write.table(coordinates, "./coordinates.txt", row.names=F, col.names=F)#
+	k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)#
+	GPA <- procGPA(data, reflect=TRUE, distances=FALSE, pcaoutput=FALSE)   #
+	pa <- as.matrix(GPA$rotated)#
+	write.table(pa, file=paste("./output_procrustes_coordinates/",variety,"_adjusted.txt", sep=""))#
+	mean_shape <- as.matrix(GPA$mshape)#
+	write.table(mean_shape, file=paste("./output_mean_shapes/",variety,"_mean.txt", sep=""))#
+}
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+interpolated_points <- read.table("../1_interpolation/output_interpolated_points.txt", header=TRUE)#
+#
+# get names of varieties#
+#
+varieties <- unique(interpolated_points[11999])#
+#
+# for each leaf, perform a separate Procrustes analysis and save results#
+#
+for(i in 1:240){#
+	print(i)#
+	variety <- as.character(varieties[i,])#
+	variety_pts <- subset(interpolated_points, Variety==variety)#
+	coordinates <- as.matrix(variety_pts[1:4, 1:11998])#
+	write.table(coordinates, "./coordinates.txt", row.names=F, col.names=F)#
+	k <- 5999#
+	m <- 2#
+	n <- 4#
+	data <- read.in("./coordinates.txt",k,m)#
+	GPA <- procGPA(data, reflect=TRUE, distances=FALSE, pcaoutput=FALSE)   #
+	pa <- as.matrix(GPA$rotated)#
+	write.table(pa, file=paste("./output_procrustes_coordinates/",variety,"_adjusted.txt", sep=""), row.names=F, col.names=F)#
+	mean_shape <- as.matrix(GPA$mshape)#
+	write.table(mean_shape, file=paste("./output_mean_shapes/",variety,"_mean.txt", sep=""), row.names=F, col.names=F)#
+}
+files <- list.files(path="output_mean_shapes/", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+files
+files <- list.files(path="output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+files
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+files
+library(shapes)
+> x <- 1:3#
+> y <- 4:6#
+> list(x, y)                     # gives a simple list#
+> as.list(paste(x, y))           # three tuples, as a list of characters#
+> mapply(list, x, y, SIMPLIFY=F)
+x <- 1:3#
+y <- 4:6#
+list(x, y)                     # gives a simple list#
+as.list(paste(x, y))           # three tuples, as a list of characters#
+mapply(list, x, y, SIMPLIFY=F)
+c <- mapply(list, x, y, SIMPLIFY=F)
+c
+files[1]
+k <- 5999#
+	m <- 2#
+	n <- 1#
+	data <- read.in(files[1],k,m)
+k <- 5999#
+	m <- 2#
+	n <- 2#
+	data <- read.in(files[1],k,m)
+k <- 595#
+	m <- 2#
+	n <- 1#
+	data <- read.in(files[1],k,m)
+variety1 <- read.table(files[1], header=FALSE)
+head(variety1)
+tail(variety1)
+variety1 <- read.table(files[1], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	tuple <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- tuple[1,1]#
+	variety1_matrix[1,(i*2)] <- tuple[1,2]#
+	}
+head(variety1_matrix)
+variety1_matrix
+variety1 <- read.table(files[1], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord[1,1]#
+	variety1_matrix[1,(i*2)] <- coord[1,2]#
+	}
+variety1_matrix
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+variety2_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	}
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+variety2_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	write.table(variety1, "temp1.txt", row.names=F, col.names=F)#
+	write.table(variety2, "temp2.txt", row.names=F, col.names=F)#
+	}
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+variety2_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	write.table(variety1, "temp1.txt", row.names=F, col.names=F)#
+	write.table(variety2, "temp2.txt", row.names=F, col.names=F)#
+	}	#
+k <- 5999#
+m <- 2#
+n <- 1#
+#
+shape1 <- read.in("./temp1.txt",k,m)#
+shape2 <- read.in("./temp2.txt",k,m)
+variety1
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+variety2_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	write.table(variety1_matrix, "temp1.txt", row.names=F, col.names=F)#
+	write.table(variety2_matrix, "temp2.txt", row.names=F, col.names=F)#
+	}	#
+k <- 5999#
+m <- 2#
+n <- 1#
+#
+shape1 <- read.in("./temp1.txt",k,m)#
+shape2 <- read.in("./temp2.txt",k,m)
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	write.table(variety1_matrix, "temp1.txt", row.names=F, col.names=F)#
+	write.table(variety2_matrix, "temp2.txt", row.names=F, col.names=F)#
+	}
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+variety1_matrix <- matrix(nrow=1, ncol=5999*2)#
+variety2_matrix <- matrix(nrow=1, ncol=5999*2)#
+#
+for(i in 1:5999){#
+#
+	coord1 <- variety1[i,]#
+	variety1_matrix[1,(i*2)-1] <- coord1[1,1]#
+	variety1_matrix[1,(i*2)] <- coord1[1,2]#
+	coord2 <- variety2[i,]#
+	variety2_matrix[1,(i*2)-1] <- coord2[1,1]#
+	variety2_matrix[1,(i*2)] <- coord2[1,2]#
+	}	#
+write.table(variety1_matrix, "temp1.txt", row.names=F, col.names=F)#
+write.table(variety2_matrix, "temp2.txt", row.names=F, col.names=F)
+k <- 5999#
+m <- 2#
+n <- 1#
+#
+shape1 <- read.in("./temp1.txt",k,m)#
+shape2 <- read.in("./temp2.txt",k,m)
+?prodist
+?procdist
+d <- procdist(shape1, shape2, type="full", reflect=TRUE)
+d <- procdist(as.matrix(shape1), as.matrix(shape2), type="full", reflect=TRUE)
+d
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+d
+?procdist
+?procGPA
+variety1 <- read.table(files[1], header=FALSE)#
+variety2 <- read.table(files[2], header=FALSE)#
+#
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+d
+file[1]
+files[1]
+mid = function(text, start_num, num_char) {#
+  substr(text, start_num, start_num + num_char - 1)#
+}
+start1 <- substring(variety1, 22, length(vareity1)-9)
+variety1 <- read.table(files[i], header=FALSE)
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+variety1 <- read.table(files[i], header=FALSE)#
+	start1 <- substring(variety1, 22, length(vareity1)-9)
+start1 <- substring(variety1, 22, length(variety1)-9)
+start1
+length(variety1)
+variety1
+i=1#
+j=2
+name1 <- substring(files[i], 22, length(files[i])-9)
+name1
+files[i]
+name1 <- substring(files[i], 22, (length(files[i])-9))
+name1
+file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)
+file1
+name1 <- substring(file1, 22, (length(file1)-9))
+name1
+is.character(file1)
+?substring
+name1 <- substring(file1, 1, 10)
+name1
+(length(file1)-9)
+name1 <- substring(file1, 22, -(length(file1)-9))
+name1
+length(file1)
+name1 <- substring(file1, 22, (nchar(file1)-9))
+name1
+file2 <- files[j]
+variety2 <- read.table(file2, header=FALSE)
+name2 <- substring(file2, 22, (nchar(file2)-9))
+name2
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+d
+files
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+i=1#
+j=2#
+#
+results <- matrix(nrow=60, ncol=60)#
+#
+for(i in 1:60){#
+#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	#name1 <- substring(file1, 22, (nchar(file1)-9))#
+	for(j in 1:60){#
+		print(i, " ", j)#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		#name2 <- substring(file2, 22, (nchar(file2)-9))#
+		d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)#
+		results[i,j]#
+}
+i=1#
+j=2
+print(i, " ", j)
+print(i, j)
+print(paste(i,j, sep=" "))
+i=1#
+j=2
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+i=1#
+j=2
+results <- matrix(nrow=60, ncol=60)
+file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))
+file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+results <- matrix(nrow=60, ncol=60)#
+#
+for(i in 1:60){#
+#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))#
+	for(j in 1:60){#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))#
+#
+		d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)#
+		results[i,j]#
+}
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+i=5#
+j=7
+file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))
+file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+d
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+results <- matrix(nrow=60, ncol=60)#
+#
+for(i in 1:60){#
+	print(i)#
+#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	#name1 <- substring(file1, 22, (nchar(file1)-9))#
+	for(j in 1:60){#
+		print(j)#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		#name2 <- substring(file2, 22, (nchar(file2)-9))#
+		#print(paste(name1,name2, sep=" by "))#
+#
+		d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)#
+		results[i,j]#
+}
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+results <- matrix(nrow=60, ncol=60)
+for(i in 1:60){#
+	print(i)#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))#
+	}
+file1
+variety1
+name1
+for(j in 1:60){#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))#
+		}
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+d
+name1
+name2
+d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+results <- matrix(nrow=60, ncol=60)#
+#
+for(i in 1:60){#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))#
+	for(j in 1:60){#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))#
+#
+		d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)#
+		results[i,j] <- d#
+}#
+}
+head(results_table)
+head(results)
+write.table(results, "output_results.txt")
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)#
+#
+results <- matrix(nrow=60, ncol=60)#
+#
+for(i in 1:60){#
+	file1 <- files[i]#
+	variety1 <- read.table(file1, header=FALSE)#
+	name1 <- substring(file1, 22, (nchar(file1)-9))#
+	for(j in 1:60){#
+		file2 <- files[j]#
+		variety2 <- read.table(file2, header=FALSE)#
+		name2 <- substring(file2, 22, (nchar(file2)-9))#
+		print(paste(name1,name2, sep=" by "))#
+#
+		d <- procdist(as.matrix(variety1), as.matrix(variety2), type="full", reflect=TRUE)#
+		results[i,j] <- d#
+}#
+}	#
+#
+write.table(results, "output_results.txt")
+# read in the 'shapes' library#
+#
+library(shapes)#
+# read in mean shapes for each variety#
+#
+files <- list.files(path="./output_mean_shapes", pattern="*.txt", full.names=TRUE, recursive=FALSE)
+files
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+data <- read.table("./output_results.txt", header=TRUE)
+head(data)
+hclust(data)
+dist(data)
+dis <- dist(data)
+hc <- hclust(dis)
+hc
+plot(hc)
+hc <- hclust(dis, method="single")#
+#
+plot(hc)
+hc <- hclust(dis, method="ward.D")#
+#
+plot(hc)
+hc <- hclust(dis, method="ward.D2")#
+#
+plot(hc)
+hc <- hclust(dis, method="average")#
+#
+plot(hc)
+hc <- hclust(dis, method="mcquitty")#
+#
+plot(hc)
+hc <- hclust(dis, method="median")#
+#
+plot(hc)
+hc <- hclust(dis, method="centroid")#
+#
+plot(hc)
+hc <- hclust(dis, method="mcquitty")#
+#
+plot(hc)
+?dist
+?hclust
+hc <- hclust(dis, method="mcquitty")#
+#
+plot(hc)
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+data <- read.table("./output_results.txt", header=TRUE)#
+#
+?hclust#
+#
+dis <- dist(data)#
+#
+hc <- hclust(dis, method="mcquitty")#
+#
+plot(hc)
+# read in the 'shapes' library#
+#
+library(shapes)#
+#
+# read in interpolated points for all leaves#
+#
+data <- read.table("./output_procrustes_distance_results.txt", header=TRUE)#
+#
+dis <- dist(data)#
+#
+hc <- hclust(dis, method="mcquitty")#
+#
+plot(hc)
